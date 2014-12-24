@@ -9,9 +9,16 @@ function doIt() {
 		--exclude ".DS_Store" \
 		--exclude ".osx" \
 		--exclude "bootstrap.sh" \
+		--exclude "brew.sh" \
 		--exclude "README.md" \
 		--exclude "LICENSE-MIT.txt" \
 		-avh --no-perms . ~;
+	rsync -avh --no-perms \
+        ~/init/*.otf \
+        ~/Library/Fonts/;
+	rsync -avh --no-perms \
+        ~/init/*.dvtcolortheme \
+        ~/Library/Developer/Xcode/UserData/FontAndColorThemes/;
 	source ~/.bash_profile;
 }
 

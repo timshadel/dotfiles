@@ -84,6 +84,10 @@
 	# Detect whitespace errors when applying a patch
 	whitespace = fix
 
+[branch]
+
+	autosetuprebase = always
+
 [core]
 
 	# Use custom `.gitignore` and `.gitattributes`
@@ -156,6 +160,7 @@
 
 	# Include summaries of merged commits in newly created merge commit messages
 	log = true
+	conflictstyle = diff3
 
 [push]
 
