@@ -11,9 +11,21 @@ alias d="cd ~/Documents/Dropbox"
 alias dl="cd ~/Downloads"
 alias dt="cd ~/Desktop"
 alias p="cd ~/projects"
+
 alias g="git"
-alias h="history"
-alias j="jobs"
+alias gs="git status -s"
+alias gl="git log"
+alias glp="git log -p"
+alias gc="git commit -av"
+alias gcv="git commit -v"
+alias gp="git push"
+
+alias h="heroku"
+alias hc="heroku config"
+alias hcp="heroku config -r prod"
+alias hl="heroku logs -t"
+alias hlp="heroku logs -t -r prod"
+alias hr="heroku releases"
 
 # Detect which `ls` flavor is in use
 if ls --color > /dev/null 2>&1; then # GNU `ls`
@@ -123,11 +135,8 @@ for method in GET HEAD POST PUT DELETE TRACE OPTIONS; do
 	alias "$method"="lwp-request -m '$method'"
 done
 
-# Make Grunt print stack traces by default
-command -v grunt > /dev/null && alias grunt="grunt --stack"
-
 # Stuff I never really use but cannot delete either because of http://xkcd.com/530/
-alias stfu="osascript -e 'set volume output muted true'"
+alias mute="osascript -e 'set volume output muted true'"
 alias pumpitup="osascript -e 'set volume 7'"
 
 # Kill all the tabs in Chrome to free up memory
