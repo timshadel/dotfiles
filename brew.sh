@@ -19,6 +19,7 @@ brew install bash-completion
 
 brew install git
 brew install heroku-toolbelt
+brew install mongodb
 
 # Languages
 brew install ruby-build
