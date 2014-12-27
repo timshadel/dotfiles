@@ -41,9 +41,11 @@ fi
 
 # List all files colorized in long format
 alias l="ls -lF ${colorflag}"
+alias lf="CLICOLOR_FORCE=X ls -lF ${colorflag} | less -R"
 
 # List all files colorized in long format, including dot files
 alias la="ls -laF ${colorflag}"
+alias laf="CLICOLOR_FORCE=X ls -laF ${colorflag} | less -R"
 
 # List only directories
 alias lsd="ls -lF ${colorflag} | grep --color=never '^d'"
