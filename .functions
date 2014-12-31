@@ -200,6 +200,67 @@ function getakey() {
 	head /dev/urandom | shasum -a 256 | sed -e "s/ .*//" | tee >(pbcopy) >(echo "Your key is on the clipboard." >&2) >(cat)
 }
 
+# Find the remote URL for the current branch of the current repository
+function remote_giturl() {
+	local my_remote=`git for-each-ref --format='%(upstream:short)' $(git symbolic-ref -q HEAD 2>/dev/null) 2>/dev/null | sed -e "s/\(.*\)\/.*/\1/"`
+	if [[ -n $my_remote ]]; then
+		git config --get remote.$my_remote.url
+	fi
+}
+
+# Get password from OS X Keychain function
+# See `man security` for more info
+function get_pw() {
+	local url=$(remote_giturl)
+	if [[ -z $url ]]; then
+	  security find-generic-password -wa "$1"
+	else
+		local host=${url#*://}
+		local path=/${host#*/}
+		host=${host%%/*}
+		local file=$(relpath `git rev-parse --show-toplevel` $1)
+		security find-internet-password -w -s $host -p $path -a $file 2>/dev/null | tee >(pbcopy)
+	fi
+}
+
+function set_pw() {
+	local url=$(remote_giturl)
+	local pass=$(getakey)
+	if [[ -z $url ]]; then
+	  security add-generic-password -a "$1" -w $pass -s $PWD -U -j "Created using set_pw in $PWD"
+	  echo "New password set for $PWD $1:$pass"
+	else
+		local host=${url#*://}
+		local path=/${host#*/}
+		host=${host%%/*}
+		local repo=${path##*/}
+		repo=${repo%%.*}
+		local file=$(relpath `git rev-parse --show-toplevel` $1)
+		security add-internet-password -s $host -p $path -a $file -w $pass -U -l "Console: $repo/$file" -j "Created using set_pw in $PWD" 2>/dev/null
+	  echo "New password set for $repo/$file — $pass"
+	fi
+	echo $pass | pbcopy
+}
+
+function del_pw() {
+	local url=$(remote_giturl)
+	if [[ -z $url ]]; then
+	  security delete-generic-password -a "$1" -s $PWD
+	  echo "Deleted password for $PWD $1"
+	else
+		local host=${url#*://}
+		local path=/${host#*/}
+		host=${host%%/*}
+		local file=$(relpath `git rev-parse --show-toplevel` $1)
+		security delete-internet-password -s $host -p $path -a $file
+	  echo "Deleted password for $1"
+	fi
+}
+
+function relpath() {
+	node -p 'var p=require("path");p.relative(p.resolve(process.argv[1]),p.resolve(process.argv[2]))' $1 $2
+}
+
 # `s` with no arguments opens the current directory in Sublime Text, otherwise
 # opens the given location
 function s() {
