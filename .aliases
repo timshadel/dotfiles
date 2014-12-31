@@ -23,6 +23,9 @@ alias gcv="git commit -v"
 alias gp="git push"
 alias gd="git diff"
 
+alias gk="getakey"
+alias gkq="getakey 2>/dev/null"
+
 alias h="heroku"
 alias hc="heroku config"
 alias hcp="heroku config -r prod"
