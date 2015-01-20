@@ -34,6 +34,7 @@ alias hcp="heroku config -r prod"
 alias hl="heroku logs -t"
 alias hlp="heroku logs -t -r prod"
 alias hr="heroku releases"
+alias hrb="heroku run bash"
 
 # Detect which `ls` flavor is in use
 if ls --color > /dev/null 2>&1; then # GNU `ls`
