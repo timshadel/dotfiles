@@ -265,6 +265,19 @@ function relpath() {
 	node -p 'var p=require("path");p.relative(p.resolve(process.argv[1]),p.resolve(process.argv[2]))' $1 $2
 }
 
+function pushcert() {
+  local pass=$(get_pw "$1.key")
+  if [[ -z $pass ]]; then
+    pass=$(set_pw "$1.key")
+  fi
+  $(openssl genrsa -aes256 -passout pass:$pass -out "$1.key" 2048)
+  $(openssl req -new -key "$1.key" -out "$1.csr" -passin pass:$pass)
+}
+
+function pushpem() {
+  openssl x509 -in "$1.cer" -inform DER -outform PEM -out "$1.crt"
+}
+
 function tsd() {
   TZ=$ date -r $(round $1)
 }
