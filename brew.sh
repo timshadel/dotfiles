@@ -60,3 +60,10 @@ brew install swiftlint
 
 # Remove outdated versions from the cellar.
 brew cleanup
+
+# Core tools
+gem install bundler
+gem install cocoapods
+gem install cocoapods-sorted-search
+
+npm install -g jshint
