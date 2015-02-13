@@ -282,6 +282,16 @@ function tsd() {
   TZ=$ date -r $(round $1)
 }
 
+# `p` with no arguments moves to the projects directory, any other arguments
+# open subdirectories inside the projects
+function p() {
+  if [ $# -eq 0 ]; then
+    cd ~/projects;
+  else
+    cd ~/projects/$@;
+  fi;
+}
+
 # `s` with no arguments opens the current directory in Sublime Text, otherwise
 # opens the given location
 function s() {
