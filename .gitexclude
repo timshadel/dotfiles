@@ -1,0 +1,4 @@
+# Private files not checked into repo, but .gitignore here is installed system-wide
+.extra
+.path
+.crontab

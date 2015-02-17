@@ -6,6 +6,7 @@ git pull origin master;
 
 function doIt() {
 	rsync --exclude ".git/" \
+        --exclude ".gitexclude" \
 		--exclude ".DS_Store" \
 		--exclude ".osx" \
 		--exclude "bootstrap.sh" \
@@ -20,15 +21,17 @@ function doIt() {
         ~/init/*.dvtcolortheme \
         ~/Library/Developer/Xcode/UserData/FontAndColorThemes/;
 	source ~/.bash_profile;
+    crontab ~/.crontab;
+    cp .gitexclude .git/info/exclude;
 }
 
 if [ "$1" == "--force" -o "$1" == "-f" ]; then
-	doIt;
+  doIt;
 else
-	read -p "This may overwrite existing files in your home directory. Are you sure? (y/n) " -n 1;
-	echo "";
-	if [[ $REPLY =~ ^[Yy]$ ]]; then
-		doIt;
-	fi;
+  read -p "This may overwrite existing files in your home directory. Are you sure? (y/n) " -n 1;
+  echo "";
+  if [[ $REPLY =~ ^[Yy]$ ]]; then
+    doIt;
+  fi;
 fi;
 unset doIt;
