@@ -19,13 +19,15 @@ alias gla="git log"
 alias glp="git log -p"
 alias gc="git commit -av"
 alias gcv="git commit -v"
+alias gk="git checkout"
 alias gp="git push"
 alias gph="git push heroku master"
+alias gpl="git pull"
 alias gd="git diff"
 alias gaa="git add --all"
 
-alias gk="getakey"
-alias gkq="getakey 2>/dev/null"
+alias key="getakey"
+alias keyq="getakey 2>/dev/null"
 
 alias h="heroku"
 alias hc="heroku config"
@@ -34,6 +36,8 @@ alias hl="heroku logs -t"
 alias hlp="heroku logs -t -r prod"
 alias hr="heroku releases"
 alias hrb="heroku run bash"
+
+alias pi="pod install"
 
 # Detect which `ls` flavor is in use
 if ls --color > /dev/null 2>&1; then # GNU `ls`
