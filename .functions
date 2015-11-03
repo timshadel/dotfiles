@@ -292,6 +292,12 @@ function p() {
   fi;
 }
 
+function _p() {
+  local cur=${COMP_WORDS[COMP_CWORD]}
+  local options=$(echo */ | sed -e "s/\///g")
+  COMPREPLY=( $(compgen -W $options -- $cur) )
+}
+
 # `s` with no arguments opens the current directory in Sublime Text, otherwise
 # opens the given location
 function s() {
