@@ -260,7 +260,7 @@ function get_pw() {
     local path=/${host#*/}
     host=${host%%/*}
     local file=$(relpath `git rev-parse --show-toplevel` $1)
-    security find-internet-password -w -s $host -p $path -a $file 2>/dev/null | tee >(pbcopy)
+    `security find-internet-password -w -s $host -p $path -a $file 2>/dev/null | tee >(pbcopy)`
   fi
 }
 
