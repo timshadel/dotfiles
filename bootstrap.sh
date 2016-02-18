@@ -20,7 +20,7 @@ function doIt() {
 	rsync -avh --no-perms \
         ~/init/*.dvtcolortheme \
         ~/Library/Developer/Xcode/UserData/FontAndColorThemes/;
-    rsync -avh --no-perms .path .extra .crontab ~/Documents/Dropbox/; touch ~/Documents/Dropbox/.path ~/Documents/Dropbox/.extra ~/Documents/Dropbox/.crontab
+    rsync -avh --no-perms .path .extra .crontab ~/Dropbox/; touch ~/Dropbox/.path ~/Dropbox/.extra ~/Dropbox/.crontab
 	source ~/.bash_profile;
     crontab ~/.crontab;
     cp .gitexclude .git/info/exclude;
