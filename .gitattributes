@@ -2,8 +2,8 @@
 #* text=auto
 # Disabled because of https://github.com/mathiasbynens/dotfiles/issues/149 :(
 # *.pbxproj -crlf -diff -merge
-*.pbxproj merge=mergepbx
+*.pbxproj merge=/usr/local/bin/mergepbx
 *.psd filter=lfs diff=lfs merge=lfs -crlf
-*.ai filter=lfs diff=lfs merge=lfs -crlf
-*.storyboard -diff
-*.xib -diff
+# *.ai filter=lfs diff=lfs merge=lfs -crlf
+# *.storyboard -diff
+# *.xib -diff
