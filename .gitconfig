@@ -79,6 +79,7 @@
 			git commit --amend -m \"$(git log -1 --pretty=%B)\n\nCloses #$1.\"; \
 		fi \
 	}; f"
+	g = grep --break --heading --line-number
 
 [apply]
 
@@ -211,3 +212,6 @@
 	trustExitCode = false
 [mergetool]
 	keepBackup = false
+[grep]
+	extendRegexp = true
+	lineNumber = true
