@@ -60,3 +60,4 @@ complete -W "NSGlobalDomain" defaults;
 complete -o "nospace" -W "Contacts Calendar Dock Finder Mail Safari iTunes SystemUIServer Terminal Twitter" killall;
 export PATH=$PATH:/Users/timshadel/.appreciatekit/bin
 alias ak=appreciatekit
+export PATH=$PATH:/Users/timshadel/.appreciatekit/bin
