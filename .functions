@@ -188,20 +188,21 @@ function trash() {
       # Add a space between base and timestamp
       test -n "$base" && base="$base "
 
-      destination="/$base`date +%H-%M-%S`_$RANDOM$ext"
+      destination="/$base`date +%Y-%m-%d`_$RANDOM$ext"
     fi
 
-    echo "Moving '$1' to '$HOME/.Trash$destination'"
+    echo "Trashing '$1' to '$HOME/.Trash$destination'"
     \mv -i -- "$1" "$HOME/.Trash$destination" || return
     shift
   done
-	`afplay /System/Library/Components/CoreAudio.component/Contents/Resources/SystemSounds/dock/drag\ to\ trash.aif`
+  `afplay /System/Library/Components/CoreAudio.component/Contents/SharedSupport/SystemSounds/dock/drag\ to\ trash.aif`
 }
 
 # Create a pretty secure, random key
 # Use `getakey 2>/dev/null` to have a quiet version
 function getakey() {
-	head /dev/urandom | shasum -a 256 | sed -e "s/ .*//" | tee >(pbcopy) >(echo "Your key is on the clipboard." >&2) >(cat)
+  echo "Your key is on the clipboard."
+  head /dev/urandom | shasum -a 256 | sed -e "s/ .*//" | tee >(pbcopy)
 }
 
 # Find the remote URL for the current branch of the current repository
