@@ -6,24 +6,24 @@ git pull origin master;
 
 function doIt() {
 	rsync --exclude ".git/" \
-        --exclude ".gitexclude" \
-		--exclude ".DS_Store" \
-		--exclude ".osx" \
-		--exclude "bootstrap.sh" \
-		--exclude "brew.sh" \
-		--exclude "README.md" \
-		--exclude "LICENSE-MIT.txt" \
-		-avh --no-perms . ~;
+      --exclude ".gitexclude" \
+		  --exclude ".DS_Store" \
+		  --exclude ".osx" \
+		  --exclude "bootstrap.sh" \
+		  --exclude "brew.sh" \
+		  --exclude "README.md" \
+		  --exclude "LICENSE-MIT.txt" \
+	  	-avh --no-perms . ~;
 	rsync -avh --no-perms \
-        ~/init/*.otf \
-        ~/Library/Fonts/;
+      ~/init/*.otf \
+      ~/Library/Fonts/;
 	rsync -avh --no-perms \
-        ~/init/*.dvtcolortheme \
-        ~/Library/Developer/Xcode/UserData/FontAndColorThemes/;
-    rsync -avh --no-perms .path .extra .crontab ~/Dropbox/; touch ~/Dropbox/.path ~/Dropbox/.extra ~/Dropbox/.crontab
+      ~/init/*.dvtcolortheme \
+      ~/Library/Developer/Xcode/UserData/FontAndColorThemes/;
+  rsync -avh --no-perms .path .extra .crontab ~/Dropbox/; touch ~/Dropbox/.path ~/Dropbox/.extra ~/Dropbox/.crontab
 	source ~/.bash_profile;
-    crontab ~/.crontab;
-    cp .gitexclude .git/info/exclude;
+  crontab ~/.crontab;
+  cp .gitexclude .git/info/exclude;
 }
 
 if [ "$1" == "--force" -o "$1" == "-f" ]; then
