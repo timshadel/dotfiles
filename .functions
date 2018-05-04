@@ -36,7 +36,7 @@ function targz() {
 		fi;
 	fi;
 
-	echo "Compressing .tar ($((size / 1000)) kB) using \`${cmd}\`…";
+	echo "Compressing .tar ($((size / 1000)) kB) using \`${cmd}\`...";
 	"${cmd}" -v "${tmpFile}" || return 1;
 	[ -f "${tmpFile}" ] && rm "${tmpFile}";
 
@@ -139,7 +139,7 @@ function getcertnames() {
 	fi;
 
 	local domain="${1}";
-	echo "Testing ${domain}…";
+	echo "Testing ${domain}...";
 	echo ""; # newline
 
 	local tmp=$(echo -e "GET / HTTP/1.0\nEOT" \
