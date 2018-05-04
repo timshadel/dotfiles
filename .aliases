@@ -18,7 +18,7 @@ alias pt="papertrail"
 
 alias g="git"
 alias gs="git status -s"
-alias gl="git l -n 100"
+alias gl="git l -n 300"
 alias gla="git l --all"
 alias glp="git log -p"
 alias gc="git commit -av"

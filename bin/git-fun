@@ -1,0 +1,34 @@
+#!/usr/bin/env ruby
+
+PREFIXES = %w{
+    abe
+    ab1e
+    add
+    a1f
+    a1fa
+    a100f
+    ba1e
+    b10b
+    cea5e
+    c0c0
+    c0da
+    c0de
+    dab
+    dad
+    daffe
+    da1e
+    deaf
+    deed
+    d0d0
+    face
+    fad
+    feed
+    f00d
+    4bade
+    4ce
+    4b0de
+    5ee
+    5ee5
+}
+
+puts `git vanity #{PREFIXES.sample}`

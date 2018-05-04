@@ -2,7 +2,7 @@
 
 	# View abbreviated SHA, description, and history graph of the latest 20 commits
 	l = log --pretty=oneline --graph --abbrev-commit --decorate
-  lr = log --pretty=oneline --abbrev-commit --decorate --reverse
+	lr = log --pretty=oneline --abbrev-commit --decorate --reverse
 
 	# View the current working tree status using the short format
 	s = status -s
@@ -21,6 +21,9 @@
 
 	# Commit all changes
 	ca = !git add -A && git commit -av
+
+	# Vanity commit 'dad'
+	dad = !git commit -av && git vanity dad
 
 	# Switch to a branch, creating it if necessary
 	go = "!f() { git checkout -b \"$1\" 2> /dev/null || git checkout \"$1\"; }; f"
@@ -141,7 +144,7 @@
 [commit]
 
 	# https://help.github.com/articles/signing-commits-using-gpg/
-	gpgsign = true
+	# gpgsign = true
 
 [diff]
 
@@ -173,7 +176,7 @@
 [push]
 
 	# https://git-scm.com/docs/git-config#git-config-pushdefault
-	default = simple
+	default = current
 	# Make `git push` push relevant annotated tags when pushing branches out.
 	followTags = true
 
@@ -196,22 +199,27 @@
 	pushInsteadOf = "git://gist.github.com/"
 
 [url "git://gist.github.com/"]
-
 	insteadOf = "gist:"
+
 [user]
 	name = Tim Shadel
 	email = tim@shadelsoftware.com
+
 [credential]
 	helper = osxkeychain
+
 [filter "lfs"]
 	clean = git lfs clean %f
 	smudge = git lfs smudge %f
 	required = true
+
 [mergetool "p4mergetool"]
 	cmd = /Applications/p4merge.app/Contents/Resources/launchp4merge $PWD/$BASE $PWD/$REMOTE $PWD/$LOCAL $PWD/$MERGED
 	trustExitCode = false
+
 [mergetool]
 	keepBackup = false
+
 [grep]
 	extendRegexp = true
 	lineNumber = true

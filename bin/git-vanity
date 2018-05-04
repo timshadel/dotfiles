@@ -1,0 +1,38 @@
+#!/usr/bin/env ruby
+
+require 'digest/sha1'
+require 'tempfile'
+
+if ARGV.length != 1 || ARGV[0].length < 1
+    puts "usage: git vanity prefix"
+    puts "example: git vanity CAFE"
+    exit(1)
+end
+
+def commit(content)
+    header = "commit #{content.length}\x00"
+    body = header + content
+    sha = Digest::SHA1.hexdigest(body)
+end
+
+content = `git cat-file commit HEAD`
+body = content
+
+i = -1
+begin
+    i += 1
+    footer = "\n#{i.to_s(16)}\n"
+    body = content + footer
+    sha = commit(body)
+end while !sha.start_with? ARGV[0]
+
+pattern = /.*\ncommitter .* \<.*\> (?<timestamp>\d+)(?<timezone>[^\n]*)\n\n(?<msg>.*)/m
+match = body.match(pattern)
+
+file = Tempfile.new('vanity_commit')
+file.write(match[:msg])
+file.close
+`LC_ALL=C GIT_COMMITTER_DATE=\"#{match[:timestamp]}#{match[:timezone]}\" git commit --amend -F #{file.path} --allow-empty`
+file.unlink
+
+puts "Amended to commit #{sha}"
