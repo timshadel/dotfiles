@@ -52,6 +52,7 @@ brew install xz
 
 # Languages
 brew install carthage
+brew install jq
 brew install mergepbx
 brew install node
 brew install rbenv
