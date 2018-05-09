@@ -201,7 +201,7 @@ function trash() {
 # Create a pretty secure, random key
 # Use `getakey 2>/dev/null` to have a quiet version
 function getakey() {
-  echo "Your key is on the clipboard."
+  >&2 echo "Your key is on the clipboard."
   head /dev/urandom | shasum -a 256 | sed -e "s/ .*//" | tee >(pbcopy)
 }
 
