@@ -906,6 +906,13 @@ defaults write com.twitter.twitter-mac HideInBackground -bool true
 defaults write com.tapbots.TweetbotMac OpenURLsDirectly -bool true
 
 ###############################################################################
+# iPhone Simulator                                                            #
+###############################################################################
+
+# Show touches. Useful during video recording.
+defaults write com.apple.iphonesimulator ShowSingleTouches 1
+
+###############################################################################
 # Kill affected applications                                                  #
 ###############################################################################
 
@@ -923,6 +930,7 @@ for app in "Activity Monitor" \
 	"Opera" \
 	"Photos" \
 	"Safari" \
+	"Simulator" \
 	"SizeUp" \
 	"Spectacle" \
 	"SystemUIServer" \
