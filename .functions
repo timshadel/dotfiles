@@ -201,7 +201,7 @@ function trash() {
 # Create a pretty secure, random key
 # Use `getakey 2>/dev/null` to have a quiet version
 function getakey() {
-  >&2 echo "Your key is on the clipboard."
+  echo "Your key is on the clipboard."
   head /dev/urandom | shasum -a 256 | sed -e "s/ .*//" | tee >(pbcopy)
 }
 
@@ -211,6 +211,18 @@ function remote_giturl() {
 	if [[ -n $my_remote ]]; then
 		git config --get remote.$my_remote.url
 	fi
+}
+
+function mkrepo() {
+	git init 2>/dev/null
+	local repoName="$(basename $PWD)"
+	local repoUrl=`aws codecommit create-repository --repository-name $repoName | jq -r .repositoryMetadata.cloneUrlHttp`
+	if [ -z "$repoUrl" ]; then
+		echo "Problem creating repo $repoName."
+		exit 1
+	fi
+	git remote add origin $repoUrl
+	git push
 }
 
 # Get password from OS X Keychain function
