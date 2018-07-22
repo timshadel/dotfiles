@@ -47,10 +47,10 @@ brew "n"
 brew "rbenv"
 
 # Databases
-brew "arangodb"
-brew "mongodb"
-brew "mysql"
-brew "postgresql"
+brew "arangodb", restart_service: :changed
+brew "mongodb", restart_service: :changed
+brew "mysql", restart_service: :changed
+brew "postgresql", restart_service: :changed
 brew "sqlite"
 
 # Compression
@@ -77,6 +77,7 @@ mas "xScope", id:889428659
 cask "1password"
 cask "alfred"
 cask "anki"
+cask "backblaze"
 cask "bibdesk"
 cask "dropbox"
 cask "google-chrome"
