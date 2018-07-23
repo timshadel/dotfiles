@@ -70,7 +70,6 @@ mas "Kindle", id:405399194
 mas "Numbers", id:409203825
 mas "Pages", id:409201541
 mas "Speedtest", id:1153157709
-mas "Tweetbot", id:557168941
 mas "xScope", id:889428659
 
 # Apps
@@ -81,6 +80,8 @@ cask "backblaze"
 cask "bibdesk"
 cask "dropbox"
 cask "google-chrome"
+cask "rocket"
 cask "sketch"
+cask "sketch-toolbox"
 cask "slack"
 cask "visual-studio-code"
