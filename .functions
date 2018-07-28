@@ -215,7 +215,14 @@ function remote_giturl() {
 
 function mkrepo() {
 	git init 2>/dev/null
-	local repoName="$(basename $PWD)"
+	local currentDir="$(basename $PWD)"
+	local upDir="$(basename $(greadlink -f "$PWD/.."))"
+	local upUpDir="$(basename $(greadlink -f "$PWD/../.."))"
+	local repoName=$currentDir
+	if [ "$upUpDir" == "projects" ]; then
+		repoName="$upDir-$currentDir"
+	fi
+
 	local repoUrl=`aws codecommit create-repository --repository-name $repoName | jq -r .repositoryMetadata.cloneUrlHttp`
 	if [ -z "$repoUrl" ]; then
 		echo "Problem creating repo $repoName."
