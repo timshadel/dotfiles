@@ -36,10 +36,12 @@ brew "git-lfs"
 brew "graphviz"
 brew "heroku/brew/heroku"
 brew "hub"
+brew "hugo"
 brew "imagemagick"
 brew "jq"
 cask "keycastr"
 brew "mergepbx"
+brew "speedtest-cli"
 brew "swiftlint"
 
 # Languages
@@ -70,6 +72,7 @@ mas "Kindle", id:405399194
 mas "Numbers", id:409203825
 mas "Pages", id:409201541
 mas "Speedtest", id:1153157709
+mas "Tweetbot", id:1384080005
 mas "xScope", id:889428659
 
 # Apps
@@ -80,8 +83,12 @@ cask "backblaze"
 cask "bibdesk"
 cask "dropbox"
 cask "google-chrome"
+cask "quickbooks-online"
 cask "rocket"
 cask "sketch"
 cask "sketch-toolbox"
 cask "slack"
+cask "skype"
+cask "tower"
 cask "visual-studio-code"
+cask "zoomus"
