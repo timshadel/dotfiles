@@ -229,7 +229,7 @@ function mkrepo() {
 		exit 1
 	fi
 	git remote add origin $repoUrl
-	git push
+	git push origin --all
 }
 
 # Get password from OS X Keychain function
