@@ -33,5 +33,6 @@ export MANPAGER='less -X';
 # https://stackoverflow.com/a/42265848/96656
 export GPG_TTY=$(tty);
 
-# For crash logs
-export DEVELOPER_DIR=`xcode-select --print-path`
+# For easily installing newer xcode versions
+export XCODE_INSTALL_USER=tim@shadelsoftware.com
+# export XCODE_INSTALL_PASSWORD is in the Keychain
