@@ -8,7 +8,7 @@ for fileName in $PWD/.[^.]*; do
     localName=${fileName##*/};
     installedName=~/$localName;
     if [[ -e $installedName && -f $installedName ]]; then
-      diff -u $localName $installedName >> $DIFF;
+      diff -u $installedName $localName >> $DIFF;
     fi
   fi
 done
