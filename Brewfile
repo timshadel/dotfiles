@@ -46,7 +46,7 @@ brew "swiftlint"
 
 # Languages
 brew "n"
-brew "rbenv"
+brew "ruby"
 
 # Databases
 brew "arangodb", restart_service: :changed
@@ -91,4 +91,5 @@ cask "slack"
 cask "skype"
 cask "tower"
 cask "visual-studio-code"
+cask "xmind"
 cask "zoomus"
