@@ -39,7 +39,6 @@ brew "hub"
 brew "hugo"
 brew "imagemagick"
 brew "jq"
-cask "keycastr"
 brew "mergepbx"
 brew "speedtest-cli"
 brew "swiftlint"
@@ -66,6 +65,7 @@ mas "Agenda", id:1287445660
 mas "Day One", id:1055511498
 mas "DevCleaner", id:1388020431
 mas "GIF Brewery 3", id:1081413713
+mas "GarageBand", id:682658836
 mas "iMovie", id:408981434
 mas "Keynote", id:409183694
 mas "Kindle", id:405399194
@@ -83,12 +83,14 @@ cask "backblaze"
 cask "bibdesk"
 cask "dropbox"
 cask "google-chrome"
+cask "keycastr"
+cask "p4v"
 cask "quickbooks-online"
 cask "rocket"
 cask "sketch"
 cask "sketch-toolbox"
-cask "slack"
 cask "skype"
+cask "slack"
 cask "tower"
 cask "visual-studio-code"
 cask "xmind"
