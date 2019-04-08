@@ -17,7 +17,7 @@ alias dt="cd ~/Desktop"
 alias pt="papertrail"
 
 alias g="git"
-alias gs="git status -s"
+#alias gs="git status -s || prj" Replaced with .functions/gs()
 alias gl="git l -n 300"
 alias gla="git l --all"
 alias glp="git log -p"
