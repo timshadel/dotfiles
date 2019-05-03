@@ -1,0 +1,33 @@
+####
+# Convert from AVI to MP4
+#
+#   Start with the AVI file
+#     -i file.avi
+#   Use the AAC encoder for audio
+#     -c:a aac
+#   Set the audio bitrate
+#     -b:a 128k
+#   Use a constant rate factor for x264 video
+#     -c:v libx264 -crf 23
+#
+#   End with the output mp4 file
+#     file.mp4
+#
+# See the following sources for various pieces:
+#
+#   Basic AVI -> MP4
+#     https://andre.blue/blog/converting-avi-to-mp4-with-ffmpeg/
+#   Constant Rate Factor for x264
+#     http://slhck.info/video/2017/02/24/crf-guide.html
+#
+
+input="${1}"
+mp4_name=$(basename "${input%.*}.mp4")
+output="${2:-$mp4_name}"
+
+ffmpeg \
+    -i "${input}" \
+    -c:a aac \
+    -b:a 128k \
+    -c:v libx264 -crf 23 \
+    "${output}"
