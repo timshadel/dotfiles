@@ -151,6 +151,7 @@
 	# Detect copies as well as renames
 	renames = copies
 	tool = p4merge
+	algorithm = patience
 
 [diff "bin"]
 
