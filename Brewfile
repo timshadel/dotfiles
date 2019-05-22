@@ -46,6 +46,13 @@ brew "speedtest-cli"
 brew "sqlcipher"
 brew "swiftlint"
 
+# Android
+brew "ant"
+brew "maven"
+brew "gradle"
+
+cask "android-sdk"
+
 # Languages
 brew "n"
 brew "ruby"
@@ -80,6 +87,7 @@ mas "xScope", id:889428659
 
 # Apps
 cask "1password"
+cask "1password-cli"
 cask "alfred"
 cask "anki"
 cask "appcode"
