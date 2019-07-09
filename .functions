@@ -295,6 +295,16 @@ function del_pw() {
 	fi
 }
 
+# Get passwords from 1Password
+function 1p() {
+	op get item "$1" | jq -r '.details | if has("password") then .password else (.fields[] | select(.designation=="password").value) end'
+}
+
+function 1ps() {
+	eval $(scrypt dec $OP_SIGNIN_PARAMS)
+	eval $(echo "$password" | op signin $subdomain $account $secret_key)
+}
+
 function relpath() {
 	node -p 'var p=require("path");p.relative(p.resolve(process.argv[1]),p.resolve(process.argv[2]))' $1 $2
 }

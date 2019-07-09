@@ -32,7 +32,3 @@ export MANPAGER='less -X';
 # Avoid issues with `gpg` as installed via Homebrew.
 # https://stackoverflow.com/a/42265848/96656
 export GPG_TTY=$(tty);
-
-# For easily installing newer xcode versions
-export XCODE_INSTALL_USER=tim@shadelsoftware.com
-# export XCODE_INSTALL_PASSWORD is in the Keychain
