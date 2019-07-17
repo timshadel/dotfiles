@@ -297,10 +297,14 @@ function del_pw() {
 
 # Get passwords from 1Password
 function 1p() {
-	1ps()
+	1ps
 	args=("$@")
 	if [ "$#" -eq 1 ]; then
-		args+=("password")
+		if [ "${args[0]}" = "session" ]; then
+			args+=("session")
+		else
+			args+=("password")
+		fi
 	fi
 	case ${args[1]} in
 	password|pass|psw|pw|p)
@@ -317,6 +321,15 @@ function 1p() {
 		;;
 	fields)
 		op get item "$1" | jq '.details.fields[].name'
+		;;
+	session)
+		if [ ! -f $OP_SESSION_FILE ]; then
+			echo "Not logged into 1Password"
+		else
+			expires=$(( 30 - (($(date +%s) - $(stat -f%c $OP_SESSION_FILE)) / 60) ))
+			for sess in "${!OP_SESSION_@}"; do echo "$sess=${!sess}"; done
+			echo "Expires in $expires minutes."
+		fi
 		;;
 	*)
 		op get item "$1" | jq -r ".details.fields[] | select(.designation=="${args[1]}").value"
