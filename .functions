@@ -297,6 +297,7 @@ function del_pw() {
 
 # Get passwords from 1Password
 function 1p() {
+	1ps()
 	args=("$@")
 	if [ "$#" -eq 1 ]; then
 		args+=("password")
@@ -324,8 +325,15 @@ function 1p() {
 }
 
 function 1ps() {
-	eval $(scrypt dec $OP_SIGNIN_PARAMS)
-	eval $(echo "$password" | op signin $subdomain $account $secret_key)
+	base=$(basename -- "$OP_SESSION_FILE")
+	dir=$(dirname -- "$OP_SESSION_FILE")
+	find $dir -name "$base" -maxdepth 1 -type f -mmin +30 -delete
+	if [ ! -f $OP_SESSION_FILE ]; then
+		eval $(scrypt dec $OP_SIGNIN_PARAMS)
+		echo "$password" | op signin $subdomain $account $secret_key > $OP_SESSION_FILE
+		chmod 600 $OP_SESSION_FILE
+	fi
+	source $OP_SESSION_FILE
 }
 
 function relpath() {
