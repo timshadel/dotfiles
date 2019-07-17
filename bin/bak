@@ -20,10 +20,6 @@ source ~/.functions
 # TODO: think about making this configured
 archive_dir="/Users/timshadel/Dropbox/Tim/Archive"
 
-def wrap_text(txt, col = 80)
-  txt.gsub(/(.{1,#{col}})( +|$\n?)|(.{1,#{col}})/, "\\1\\3\n")
-end
-
 # Main loop
 for filepath in "$@"
 do
@@ -37,19 +33,43 @@ do
 
     if [ -d $filepath ]; then
         gitpath="$filepath/.git"
-        if [ -e $gitpath ]; then
-          status "'$filepath' contains a .git directory. Not backing it up."
-          exit -1
-        fi
         name="${filename%.*}"
-        zipname="$name.zip"
-        status "Zipping '$filepath' to '$zipname'"
-        zip -ro "$zipname" "$filepath"
 
-        # Trash the uncompressed, original directory
-        trash $filepath || exit -1
+        # Check if we're in a project structure
+        upDir="$(basename $(greadlink -f "$filepath/.."))"
+        upUpDir="$(basename $(greadlink -f "$filepath/../.."))"
+        if [ "$upUpDir" == "projects" ]; then
+          name="$upDir-$name"
+        fi
 
-        filepath=$zipname
+        if [ -e $gitpath ]; then
+          status "'$filepath' contains a .git directory. Exporting bundle."
+          dir=$PWD
+          cd $filepath
+          if [[ -n $(git status --porcelain 2> /dev/null | tail -n1) ]]; then
+            status "error: The git working directory is dirty. bak requires clean repos."
+            cd $dir
+            exit 1
+          else
+            cd $dir
+
+            bundlename="$name.git.bundle"
+            git --git-dir=$gitpath bundle create "$bundlename" --all
+
+            # Trash the uncompressed, original directory
+            trash $filepath || exit -1
+            filepath=$bundlename
+          fi
+        else
+          zipname="$name.zip"
+          status "Zipping '$filepath' to '$zipname'"
+          zip -ro "$zipname" "$filepath"
+
+          # Trash the uncompressed, original directory
+          trash $filepath || exit -1
+          filepath=$zipname
+        fi
+
         filename=$(basename "$filepath")
     fi
 
