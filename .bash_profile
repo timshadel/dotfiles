@@ -5,8 +5,8 @@ export PATH="$HOME/bin:/usr/local/Cellar/openssl/1.0.2j/bin:/usr/local/Cellar/cu
 export PATH="/Applications/Visual Studio Code.app/Contents/Resources/app/bin:$PATH"
 
 # Setup Android
-export ANDROID_HOME=$HOME/Library/Android/sdk
-export PATH=$PATH:$ANDROID_HOME/platform-tools:$ANDROID_HOME/tools
+export ANDROID_SDK_ROOT=/usr/local/share/android-sdk
+export ANDROID_HOME=$ANDROID_SDK_ROOT
 
 # Setup System Gems for Xcode
 export PATH="/usr/local/opt/ruby/bin:$PATH"

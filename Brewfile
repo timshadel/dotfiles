@@ -42,10 +42,12 @@ brew "hugo"
 brew "imagemagick"
 brew "jq"
 brew "mergepbx"
+brew "qrencode"
 brew "scrypt"
 brew "speedtest-cli"
 brew "sqlcipher"
 brew "swiftlint"
+brew "tarsnap"
 
 # Android
 brew "ant"

@@ -1,0 +1,14 @@
+# This is a convenience file, but must be kept secure.
+# It is never archived; it must be recreated.
+# Fill out this file, then encrypt it.
+
+# cp .opsi-params.default ~/.opsi-params.txt
+# edit ~/.opsi-params.txt
+# scrypt enc ~/.opsi-params.txt ~/.opsi-params
+# chmod 600 ~/.opsi-params
+# rm -P ~/.opsi-params.txt
+
+account=(account in your 1p domain)
+subdomain=(your 1p domain)
+secret_key=(long hex with dashes)
+password=(your password)

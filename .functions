@@ -297,7 +297,30 @@ function del_pw() {
 
 # Get passwords from 1Password
 function 1p() {
-	op get item "$1" | jq -r '.details | if has("password") then .password else (.fields[] | select(.designation=="password").value) end'
+	args=("$@")
+	if [ "$#" -eq 1 ]; then
+		args+=("password")
+	fi
+	case ${args[1]} in
+	password|pass|psw|pw|p)
+		op get item "$1" | jq -r '.details | if has("password") then .password else (.fields[] | select(.designation=="password").value) end'
+		;;
+	username|user|usr|u)
+		op get item "$1" | jq -r '.details.fields[] | select(.designation=="username").value'
+		;;
+	item|i)
+		op get item "$1" | jq .
+		;;
+	details|detail)
+		op get item "$1" | jq .details
+		;;
+	fields)
+		op get item "$1" | jq '.details.fields[].name'
+		;;
+	*)
+		op get item "$1" | jq -r ".details.fields[] | select(.designation=="${args[1]}").value"
+		;;
+	esac
 }
 
 function 1ps() {

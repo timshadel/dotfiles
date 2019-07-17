@@ -13,6 +13,7 @@ function doIt() {
       --exclude "brew.sh" \
       --exclude "Brewfile" \
       --exclude "dotdiff.sh" \
+      --exclude "init" \
       --exclude "LICENSE-MIT.txt" \
       --exclude "NEW_MACHINE.md" \
       --exclude "NEXT_TIME.md" \

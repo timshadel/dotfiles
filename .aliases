@@ -13,6 +13,7 @@ alias d="cd ~/Dropbox"
 alias dl="cd ~/Downloads"
 alias dt="cd ~/Desktop"
 #alias p="cd ~/projects"
+alias b="cd ~/projects/timshadel/brain && code ."
 
 alias pt="papertrail"
 
