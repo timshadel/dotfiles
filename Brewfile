@@ -59,6 +59,7 @@ cask "android-sdk"
 # Languages
 brew "n"
 brew "ruby"
+cask "homebrew/cask-versions/java8"
 
 # Databases
 brew "arangodb", restart_service: :changed
