@@ -70,6 +70,10 @@ do
           filepath=$zipname
         fi
 
+        # Archive should keep original creation date
+        touchtime=`date -j -r $seconds +'%Y%m%d%H%M.%S'`
+        touch -t $touchtime "$filepath"
+
         filename=$(basename "$filepath")
     fi
 
@@ -81,5 +85,4 @@ do
 
     status "Moving '$filepath' to '$destination'"
     mv "$filepath" "$destination"
-
 done
