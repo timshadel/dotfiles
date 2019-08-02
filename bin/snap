@@ -11,11 +11,11 @@ fi
 for filepath in "$args"
 do
     fullpath=$(greadlink -f "$filepath")
-    if [ ! -e $fullpath ]; then
+    if [ ! -e "$fullpath" ]; then
         status "'$filepath' not found."
         continue
     fi
-    if [ ! -d $fullpath ]; then
+    if [ ! -d "$fullpath" ]; then
         status "'$filepath' must be a directory."
         continue
     fi
@@ -23,24 +23,27 @@ do
     name="${filename%.*}"
 
     # Check if we're in a project structure
-    upDir="$(basename $(greadlink -f "$filepath/.."))"
-    upUpDir="$(basename $(greadlink -f "$filepath/../.."))"
+    upDir="$(basename "$(greadlink -f "$filepath/..")")"
+    upUpDir="$(basename "$(greadlink -f "$filepath/../..")")"
     if [ "$upUpDir" == "projects" ]; then
         name="$upDir-$name"
+    fi
+    if [ "$name" == "Tim's Small Plates" ]; then
+        name="small-plates-timshadel"
     fi
 
     archive_name="$name/$(date +\%Y\%m\%d-\%H\%M)_$(uname -n)_$(sysctl hw.model | awk '{ print $2 }' | tr ',' '-')_$(system_profiler SPHardwareDataType | awk '/Serial/ {print $4}')"
     snap_path="$fullpath/.snap"
 
     should_archive=true
-    changed=( $(find $fullpath -mnewer "$snap_path" -not \( -name .git -or -name index \)) )
+    changed=( $(find "$fullpath" -mnewer "$snap_path" -not \( -name .git -or -name index \)) )
     if [ "${#changed[@]}" -eq 0 ]; then
         should_archive=false
 	fi
 
     if [ ! -f "$snap_path" ] || [ "$should_archive" = "true" ]; then 
-        echo "Creating archive $name at $fullpath named '$archive_name'"
-        /usr/local/bin/tarsnap -cf $archive_name $fullpath
+        echo "Creating archive '$name' at '$fullpath' named '$archive_name'"
+        /usr/local/bin/tarsnap -cf "$archive_name" "$fullpath"
         touch "$snap_path"
     else 
         modified=$(( ($(date +%s) - $(stat -f%c $OP_SESSION_FILE)) / 86400 ))

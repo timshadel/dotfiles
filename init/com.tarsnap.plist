@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+  <dict>
+    <key>Label</key>
+    <string>com.tarsnap</string>
+    <key>RunAtLoad</key>
+    <true/>
+    <key>EnableGlobbing</key>
+    <true/>
+    <key>StartCalendarInterval</key>
+    <dict>
+        <key>Minute</key>
+        <integer>23</integer>
+    </dict>
+    <key>ProgramArguments</key>
+    <array>
+        <string>/bin/bash</string>
+        <string>-c</string>
+        <string>/usr/local/bin/tarsnap -cf "$(sysctl hw.model | awk '{ print $2 }') $(system_profiler SPHardwareDataType | awk '/Serial/ {print $4}') $(date +\%Y\%m\%d-\%H\%M)" .</string>
+    </array>
+    <key>WorkingDirectory</key>
+    <string>/Users/timshadel</string>
+  </dict>
+</plist>

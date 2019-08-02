@@ -1,0 +1,46 @@
+### Recommended options
+
+# Tarsnap cache directory
+cachedir ~/Library/Caches/com.tarsnap
+
+# Tarsnap key file
+keyfile TARSNAP_KEY_PATH
+
+# Don't archive files which have the nodump flag set.
+nodump
+
+# Print statistics when creating or deleting archives.
+print-stats
+
+# Create a checkpoint once per GB of uploaded data.
+checkpoint-bytes 1G
+
+# Exclude files and directories matching specified patterns
+exclude Libraries/
+exclude Library/
+exclude Music/
+exclude Applications/
+exclude Downloads/
+
+# Random trash files
+exclude .DS_Store
+exclude .Trash
+exclude .Trash/
+exclude .localized
+exclude .TemporaryItems
+exclude .fseventsd
+exclude .Trashes
+exclude .DocumentRevisions-V100
+exclude .Spotlight-V100
+exclude .snap
+
+# Media Files are very large
+exclude *.flv
+exclude *.mp4
+exclude *.mov
+exclude prj.zip
+exclude others.zip
+
+exclude Pictures/
+exclude Documents/Photos/
+exclude Movies/
