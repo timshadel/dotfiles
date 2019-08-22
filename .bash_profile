@@ -1,5 +1,5 @@
 # Add `~/bin` to the `$PATH`, and grab newer OpenSSL, too.
-export PATH="$HOME/bin:/usr/local/Cellar/openssl/1.0.2j/bin:/usr/local/Cellar/curl/7.52.0/bin:$PATH";
+export PATH="$HOME/bin:/usr/local/opt/openssl/bin:/usr/local/opt/curl/bin:$PATH";
 
 # Add Visual Studio Code to the path
 export PATH="/Applications/Visual Studio Code.app/Contents/Resources/app/bin:$PATH"

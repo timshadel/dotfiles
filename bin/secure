@@ -1,0 +1,14 @@
+#!/bin/bash
+
+function base64url {
+  _l=$((${#1} % 4))
+  if [ $_l -eq 2 ]; then _s="$1"'=='
+  elif [ $_l -eq 3 ]; then _s="$1"'='
+  else _s="$1" ; fi
+  echo "$_s" | tr '_-' '/+'
+}
+
+
+value=$(pbpaste)
+message=$(base64url "$value")
+echo $message | base64 -d | openssl rsautl -decrypt -pkcs -inkey $SECURE_CONTACT_KEY_PATH
