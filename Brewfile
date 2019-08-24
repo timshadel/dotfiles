@@ -46,6 +46,7 @@ brew "qrencode"
 brew "scrypt"
 brew "speedtest-cli"
 brew "sqlcipher"
+brew "step"
 brew "swiftlint"
 brew "tarsnap"
 

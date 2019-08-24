@@ -1,0 +1,6 @@
+#!/bin/bash
+
+tmpfile=$(mktemp /tmp/smw.XXXXXX)
+pbpaste | tr -d '\n' | sed -e "s/^/\{\"kty\"\:\"RSA\",\"n\"\:\"/" -e "s/\./\", \"e\"\:\"/" -e "s/$/\"\}/" > "$tmpfile"
+step crypto jwe encrypt --alg=RSA-OAEP-256 --enc=A256GCM --key="$tmpfile" | jq -r '(.protected + "." + .encrypted_key + "." + .iv + "." + .ciphertext + "." + .tag)'
+rm "$tmpfile"

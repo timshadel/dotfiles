@@ -1,0 +1,3 @@
+#!/bin/bash
+
+pbpaste | step crypto jwe decrypt --key=$SECURE_CONTACT_KEY_PATH
