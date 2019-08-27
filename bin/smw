@@ -17,5 +17,5 @@ if [ ! -f "$key_path" ]; then
     fi
 fi
 
-echo "Type the message to encrypt. Type ^D to finish."
-step crypto jwe encrypt --alg=RSA-OAEP-256 --enc=A256GCM --key="$key_path" | jq -r '(.protected + "." + .encrypted_key + "." + .iv + "." + .ciphertext + "." + .tag)'
+echo "Type the message to encrypt to $1. Type ^D to finish."
+step crypto jwe encrypt --alg=RSA-OAEP-256 --enc=A256GCM --key="$key_path" | jq -r '(.protected + "." + .encrypted_key + "." + .iv + "." + .ciphertext + "." + .tag)' | tee >(pbcopy)
