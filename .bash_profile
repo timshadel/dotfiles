@@ -1,8 +1,12 @@
-# Add `~/bin` to the `$PATH`, and grab newer OpenSSL, too.
-export PATH="$HOME/bin:/usr/local/opt/openssl/bin:/usr/local/opt/curl/bin:$PATH";
+###
+#   PATH SETTING
+#	Least important first; last wins
 
-# Add Visual Studio Code to the path
-export PATH="/Applications/Visual Studio Code.app/Contents/Resources/app/bin:$PATH"
+# Yarn
+export PATH="$HOME/.yarn/bin:$HOME/.config/yarn/global/node_modules/.bin:$PATH"
+
+# Rust
+export PATH="$HOME/.cargo/bin:$PATH"
 
 # Setup Android
 export ANDROID_SDK_ROOT=/usr/local/share/android-sdk
@@ -16,8 +20,16 @@ export LDFLAGS="-L/usr/local/opt/ruby/lib"
 export CPPFLAGS="-I/usr/local/opt/ruby/include"
 export PKG_CONFIG_PATH="/usr/local/opt/ruby/lib/pkgconfig"
 
-# Rust
-export PATH="$HOME/.cargo/bin:$PATH"
+# Add `~/bin` to the `$PATH`, and grab newer OpenSSL, too.
+export PATH="$HOME/bin:/usr/local/opt/openssl/bin:/usr/local/opt/curl/bin:$PATH";
+
+# Add Visual Studio Code to the path
+export PATH="/Applications/Visual Studio Code.app/Contents/Resources/app/bin:$PATH"
+
+
+###
+#  Other stuff
+#
 
 # Load the shell dotfiles, and then some:
 # * ~/.path can be used to extend `$PATH`.
