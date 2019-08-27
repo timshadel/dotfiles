@@ -1,0 +1,11 @@
+#!/bin/bash
+
+if [ "$#" -ne 1 ]; then
+    echo "Usage:  smv <keyname>"
+    exit 1
+fi
+
+secure_dir=$(dirname $SECURE_CONTACT_KEY_PATH)
+key_path="$secure_dir/$1.key"
+pbpaste | tr -d '\n' | sed -e "s/^/\{\"kty\"\:\"RSA\",\"kid\"\:\"$1\",\"n\"\:\"/" -e "s/\./\", \"e\"\:\"/" -e "s/$/\"\}/" > "$key_path"
+chmod 600 "$key_path"
