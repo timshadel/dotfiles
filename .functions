@@ -237,13 +237,14 @@ function mkrepo() {
 		repoName="$upDir-$currentDir"
 	fi
 
+	echo "Creating repo \`$repoName\` in AWS."
 	local repoUrl=`aws codecommit create-repository --repository-name $repoName | jq -r .repositoryMetadata.cloneUrlHttp`
 	if [ -z "$repoUrl" ]; then
 		echo "Problem creating repo $repoName."
-		exit 1
+	else
+		git remote add origin $repoUrl
+		git push origin --all
 	fi
-	git remote add origin $repoUrl
-	git push origin --all
 }
 
 # Get password from OS X Keychain function
