@@ -88,7 +88,8 @@ mas "Keynote", id:409183694
 mas "Kindle", id:405399194
 mas "Numbers", id:409203825
 mas "Pages", id:409201541
-mas "Speedtest", id:1153157709
+mas "Speedtest", id: 1153157709
+mas "Trello", id: 1278508951
 mas "Tweetbot", id:1384080005
 mas "xScope", id:889428659
 
