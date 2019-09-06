@@ -1,0 +1,2 @@
+ day=$(date -j +%Y-%m-%d); sunday=$(date -j -f '%Y-%m-%d' -v-$(date -jf '%Y-%m-%d' $day +%u)d $day +%Y-%m-%d); sed -n -e "/$sunday/,\$p" ~/Library/Application\ Support/TagTime-desktop/tagtime.log | cut -c 12-17,94-103 | sed -e "s/\([^ ]*\) \(.*\)/\2 \1/" | sort | uniq -c | awk '{ print $2,$3,$1 }' | sort | awk '{ if ($1 != prev) { print "" }; printf("%10s %5s %3d:%02d\n", $1, $2, int($3/3), ($3 % 3) * 20); prev=$1 }'
+ 

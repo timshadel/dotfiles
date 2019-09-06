@@ -27,6 +27,8 @@ brew "freetype"
 brew "webp"
 
 # Tools
+brew "autoconf"
+brew "automake"
 brew "awscli"
 brew "carthage"
 brew "cloc"
