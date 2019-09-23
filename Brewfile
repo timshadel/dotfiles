@@ -120,7 +120,6 @@ cask "zoomus"
 
 # Tentative
 brew "bitrise"
-brew "travis"
 
 cask "grammarly"
 cask "microsoft-teams"
